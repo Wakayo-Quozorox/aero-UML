@@ -4,35 +4,22 @@ tittle: "Projet de gestion d'un club de vol"
 
 # Projet de gestion d'un club de vol
 
+Organisation du projet :
+
 ```mermaid
 classDiagram
 
-Utilisateur <|-- Administrateur
-Utilisateur <|-- Secrétaire
-Utilisateur <|-- Mécanicien
-Utilisateur <|-- Membre
 Membre <|-- Elève
 Membre <|-- Instructeur
 Location <|-- Leçon_pratique
-Fiche_transfert <|-- Fiche_sortie
-Fiche_transfert <|-- Fiche_entree
-
 
 Instructeur "1" -- "0..*" Leçon_pratique
 Elève "1" -- "*" Leçon_pratique
-Parc_Avion "1" -- "1..*" Avion
 Location "1" -- "1" Avion
-Avion *-- Carnet_entretien
-
+Avion "1" -- "1" Carnet_entretien
 Mécanicien "1" -- "*" Rapport_maintenance
-Carnet_entretien *-- Rapport_maintenance
-
+Carnet_entretien "1" -- "*" Rapport_maintenance
 Membre "1" -- "*" Location
-
-class Utilisateur {
-    Nom utilisateur
-    Mot de passe
-}
 
 class Avion {
     Type
@@ -41,7 +28,6 @@ class Avion {
 }
 
 class Elève {
-
     Heure de vol avec instructeur
     Date de délivrance du certificat médical
     Date inscription en centre de formation
@@ -55,9 +41,7 @@ class Membre {
     Date de naissance
 }
 
-class Parc_Avion {
-    Nombre avions
-}
+class Secretaire
 
 class Carnet_entretien {
     Liste des rapports de maintenance
@@ -88,17 +72,4 @@ class Leçon_pratique {
     Prix instruction
 }
 
-class Fiche_transfert {
-    Date
-    Appareil
-}
-
-class Fiche_sortie {
-    Prix
-    
-}
-
-class Fiche_entrée{
-    
-}
 ```
