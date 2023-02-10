@@ -4,7 +4,7 @@ tittle: "Projet de gestion d'un club de vol"
 
 # Projet de gestion d'un club de vol
 
-Organisation du projet :
+Représentation conceptuelle
 
 ```mermaid
 classDiagram
