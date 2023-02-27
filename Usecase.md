@@ -20,11 +20,10 @@ membre <|-- instructeur
 
 rectangle Logiciel {
     ' use cases    
-    (Gérer le parc) as gererParc
+    (Ajouter un avion au parc) as ajouterAvion
     (Réserver un avion) as reserverAvion
     (Controler un avion) as controlerAvion
     (Signaler les anomalies) as signalerAnomalie
-    (Relever horametre) as releverHorametre
     (Gérer le statut d'un avion) as gererStatutAvion
 
     (Plannifier une lecon) as plannifierLecon
@@ -45,14 +44,13 @@ rectangle Logiciel {
     reserverAvion <.. plannifierLecon
 
     controlerAvion <.. signalerAnomalie
-    controlerAvion -- releverHorametre
 
-    gererUtilisateurs <.. ajouterUtilisateur
-    gererUtilisateurs <.. supprimerUtilisateur
+    gererUtilisateurs <|-- ajouterUtilisateur
+    gererUtilisateurs <|-- supprimerUtilisateur
 
-    gererMembre <.. ajouterMembre
-    gererMembre <.. modifierMembre
-    gererMembre <.. supprimerMembre
+    gererMembre <|-- ajouterMembre
+    gererMembre <|-- modifierMembre
+    gererMembre <|-- supprimerMembre
     modifierMembre <.. acquitCotisation
     modifierMembre <.. adhesionFFA
     
@@ -69,8 +67,7 @@ membre --> controlerAvion
 secretaire --> gererMembre
 secretaire --> gererStatutAvion
 secretaire --> reserverAvion
-secretaire --> gererParc
-
+secretaire --> ajouterAvion
 administrateur --> gererUtilisateurs
 
 instructeur --> reserverAvion
