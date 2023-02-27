@@ -4,16 +4,12 @@
 
 ' actors
 
-'together {
-    actor administrateur
-    actor secretaire
-    actor mecanicien
-    actor membre
-    'together {
-        actor instructeur
-        'actor eleve
-    '}
-'}
+actor administrateur
+
+actor membre
+actor instructeur
+actor secretaire
+actor mecanicien
 
 ' heritage des acteurs
 top to bottom direction
@@ -33,27 +29,50 @@ rectangle Logiciel {
 
     (Plannifier une lecon) as plannifierLecon
     
-    (Gérer les membres) as gererMembres
+    (Gérer les membres) as gererMembre
+    (Ajouter un membre) as ajouterMembre
+    (Modifier un membre) as modifierMembre
+    (Supprimer un membre) as supprimerMembre
+    (Acquitter sa cotisation annuelle) as acquitCotisation
+    (Adhesion à la fédération française d’aviation) as adhesionFFA
+
     (Gérer les utilisateurs) as gererUtilisateurs
+    (Ajouter un utilisateur) as ajouterUtilisateur
+    (Supprimer un utilisateur) as supprimerUtilisateur
 
     (Rédiger un rapport de maintenance) as redigerRapport
+
+    reserverAvion <.. plannifierLecon
+
+    controlerAvion <.. signalerAnomalie
+    controlerAvion -- releverHorametre
+
+    gererUtilisateurs <.. ajouterUtilisateur
+    gererUtilisateurs <.. supprimerUtilisateur
+
+    gererMembre <.. ajouterMembre
+    gererMembre <.. modifierMembre
+    gererMembre <.. supprimerMembre
+    modifierMembre <.. acquitCotisation
+    modifierMembre <.. adhesionFFA
+    
+    ajouterMembre <.. acquitCotisation
+    ajouterMembre <.. adhesionFFA
 }
+
+
 
 left to right direction
 
 membre --> controlerAvion
-membre --> signalerAnomalie
-membre --> releverHorametre
 
-secretaire --> gererMembres
+secretaire --> gererMembre
 secretaire --> gererStatutAvion
 secretaire --> reserverAvion
-secretaire --> plannifierLecon
 secretaire --> gererParc
 
 administrateur --> gererUtilisateurs
 
-instructeur --> plannifierLecon
 instructeur --> reserverAvion
 
 mecanicien --> redigerRapport
