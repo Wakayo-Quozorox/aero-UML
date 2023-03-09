@@ -22,9 +22,9 @@ Carnet_entretien "1" -- "*" Rapport_maintenance
 Membre "1" -- "*" Location
 
 class Avion {
-    Type
-    Nombre heure de vol
-    Statut
+    Type : String
+    Nombre heure de vol : Integer
+    Statut : 
 }
 
 class Elève {
